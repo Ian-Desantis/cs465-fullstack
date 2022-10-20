@@ -26,6 +26,23 @@ const tripsFindCode = async (req, res) => {
     });
 };
 
+const tripsDeleteTrip = async (req, res) => {
+    //console.log(req.body);
+    Model.findOneAndDelete(
+        {code: req.params.tripCode},
+        (err) => {
+            if (err) {
+              return res
+                .status(400) //bad request
+                .json(err);
+            } else {
+              return res
+                .status(202) //deletes
+                .json({ message: "trip deleted" });
+            }
+          }
+    );
+};
 const tripsUpdateTrip = async (req, res) => {
     console.log(req.body);
     Model.findOneAndUpdate(
@@ -93,4 +110,5 @@ module.exports = {
     tripsFindCode,
     tripsAddTrip,
     tripsUpdateTrip,
+    tripsDeleteTrip
 };

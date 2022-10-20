@@ -10,8 +10,9 @@ router
 
 router
   .route("/trips/:tripCode")
-  .get(tripsController.tripsList)
-  .put(tripsController.tripsUpdateTrip);
+  .get(tripsController.tripsFindCode)
+  .put(tripsController.tripsUpdateTrip)
+  .delete(tripsController.tripsDeleteTrip);
 
 router.route("/trips/:tripCode").get(tripsController.tripsFindCode);
 
