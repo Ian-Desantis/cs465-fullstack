@@ -11,44 +11,53 @@ export class TripDataService {
   private tripUrl = `${this.apiBaseUrl}trips/`;
 
   public getTrips(): Promise<Trip[]> {
-    console.log("Inside TripDataService#getTrips");
-    return this.http
-      .get(`${this.apiBaseUrl}trips`)
-      .toPromise()
-      .then((response) => response.json() as Trip[])
-      .catch(this.handleError);
+	console.log("Inside TripDataService#getTrips");
+	return this.http
+	  .get(`${this.apiBaseUrl}trips`)
+	  .toPromise()
+	  .then((response) => response.json() as Trip[])
+	  .catch(this.handleError);
   }
 
   public getTrip(tripCode: string): Promise<Trip[]> {
-    console.log("Inside TripDataService#getTrip(tripCode)");
-    return this.http
-      .get(this.tripUrl + tripCode)
-      .toPromise()
-      .then((response) => response.json() as Trip[])
-      .catch(this.handleError);
+	console.log("Inside TripDataService#getTrip(tripCode)");
+	return this.http
+	  .get(this.tripUrl + tripCode)
+	  .toPromise()
+	  .then((response) => response.json() as Trip[])
+	  .catch(this.handleError);
   }
 
   public addTrip(formData: Trip): Promise<Trip> {
-    console.log("Insided TripDataService#addTrip");
-    return this.http
-      .post(this.tripUrl, formData)
-      .toPromise()
-      .then((response) => response.json() as Trip[])
-      .catch(this.handleError);
+	console.log("Insided TripDataService#addTrip");
+	return this.http
+	  .post(this.tripUrl, formData)
+	  .toPromise()
+	  .then((response) => response.json() as Trip[])
+	  .catch(this.handleError);
+  }
+
+  public deleteTrip(formData: Trip): Promise<Trip[]> {
+	console.log("Insided TripDataService#deleteTrip");
+	return this.http
+	  .delete(this.tripUrl + formData.code)
+	  .toPromise()
+	  .then((response) => response.json() as Trip[])
+	  .catch(this.handleError);
   }
 
   public updateTrip(formData: Trip): Promise<Trip[]> {
-    console.log("Inside TripDataService#updateTrip");
-    console.log(formData);
-    return this.http
-      .put(this.tripUrl + formData.code, formData)
-      .toPromise()
-      .then((response) => response.json() as Trip[])
-      .catch(this.handleError);
+	console.log("Inside TripDataService#updateTrip");
+	console.log(formData);
+	return this.http
+	  .put(this.tripUrl + formData.code, formData)
+	  .toPromise()
+	  .then((response) => response.json() as Trip[])
+	  .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    console.error("Something has gone wrong", error);
-    return Promise.reject(error.message || error);
+	console.error("Something has gone wrong", error);
+	return Promise.reject(error.message || error);
   }
 }

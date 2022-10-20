@@ -46,7 +46,6 @@ export class EditTripComponent implements OnInit {
     );
 
     this.tripService.getTrip(tripCode).then((data) => {
-      console.log(data);
       // Don't use editForm.setValue() as it will throw console error
       this.editForm.patchValue(data[0]);
     });
