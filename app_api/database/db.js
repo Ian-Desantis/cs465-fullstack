@@ -60,7 +60,7 @@ process.on("SIGINT", () => {
   });
 });
 
-// Herokue app termination
+// Heroku app termination
 process.on("SIGTERM", () => {
   gracefulShutdown("Heroku app shutdown", () => {
     process.exit(0);
@@ -71,4 +71,4 @@ connect();
 
 // bring in schema
 require("./models/travlr");
-//require("./models/user");
+require("./models/user");
